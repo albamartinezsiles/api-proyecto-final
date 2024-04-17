@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form>
+        <input type="text" placeholder="¿qué hay que hacer?" />
+        <input type="submit" value="crear tarea" />
+    </form>
+
+    <section className="tareas">
+        <div className="tarea">
+            <h2 className="visible">Aprender React</h2>
+            <input type="text" value="Aprender React" />
+            <button className="boton">Editar</button>
+            <button className="boton">Borrar</button>
+            <button className="estado"><span></span></button>
+        </div>
+    </section>
+
+
+
+    <script>
+
+
+
+        document.querySelector('form').addEventListener('submit', evento => {
+            evento.preventDefault();
+            const textoNuevo = document.querySelector('input[type="text"]').value;
+
+            const nuevaTarea = {
+                textoTarea: textoNuevo,
+                editando: false,
+                estado: "pendiente",
+                DOM: null
+            };
+            fetch('http://localhost:4000/crear-tarea', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nuevaTarea)
+            })
+            .then(respuesta => respuesta.text())
+            .then(respuesta => console.log(respuesta));
+        });
+
+    
+
+        
+
+        //HAY QUE USAR LA URL PRUEBA TONTAPOIA
+        
+       
+      // PROBAR DELETE
+      /*
+      fetch('http://localhost:4000/tareas/borrar', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+        })
+        .then(respuesta => respuesta.text())
+        .then(data => console.log(data));
+
+        */
+    </script>
+</body>
+</html>
