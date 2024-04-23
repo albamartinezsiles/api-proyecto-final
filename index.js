@@ -25,15 +25,13 @@ servidor.get("/tareas", async (peticion,respuesta) => {
 
     let tareas = await coleccion.find().toArray();
 
-    respuesta.json(tareas);
     conexion.close();
     
     if (tareas.length === 0) {
         respuesta.json({ message: "No hay tareas" });
-      } else {
+    } else {
         respuesta.json(tareas);
-      }
-      conexion.close();
+    }
     //esto tarda mucho en cargar no se por qué pero me da el console.log
 
 });
