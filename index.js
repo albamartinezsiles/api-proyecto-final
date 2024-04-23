@@ -1,17 +1,11 @@
-const cors = require('cors')
 require ("dotenv").config();
 const express = require('express')
+const cors = require('cors')
 const { MongoClient, ObjectId } = require("mongodb");
 const servidor = express();
 const bodyParser = require('body-parser'); //permite extraer la información del cuerpo de la petición (para post, put, delete, etc)
 
-const corsOptions = {
-    origin: 'https://front-proyecto-final-cyvj.onrender.com',
-    optionsSuccessStatus: 200
-  }
-  
-  servidor.use(cors(corsOptions));
-
+servidor.use(cors());
 servidor.use(bodyParser.json()); //extrae la información y crea el objeto body en la petición
 
 
