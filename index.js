@@ -121,4 +121,4 @@ servidor.use((error,peticion,respuesta,siguiente) => { //a este middleware se ll
     respuesta.json({ error : "petición no válida" });
 });
 
-servidor.listen(process.env.PORT)
+servidor.listen(process.env.PORT || 4000)
