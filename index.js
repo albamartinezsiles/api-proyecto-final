@@ -32,7 +32,6 @@ servidor.get("/tareas", async (peticion,respuesta) => {
 servidor.post("/crear-tarea", async (peticion, respuesta) => {
     const conexion = await conectar();
     const nuevaTarea = peticion.body; //recojo la tarea y la meto en una constante para poder trabajar con ella
-    console.log(nuevaTarea);
 
     let coleccion = conexion.db("tareas").collection("tareas");
 
@@ -42,9 +41,9 @@ servidor.post("/crear-tarea", async (peticion, respuesta) => {
         } else {
             coleccion.insertOne({ textoTarea: nuevaTarea.textoTarea, editando: false, estado: "pendiente"}) //inserto la tarea en la bd
             .then(resultado => {
-                conexion.close();
-                respuesta.json({ tarea: nuevaTarea}); //devuelvo la tarea creada en formato json
-                console.log("Tarea creada correctamente");
+              conexion.close();
+              respuesta.json({ tarea: nuevaTarea }); //devuelvo la tarea creada en formato json
+              console.log("Tarea creada correctamente");
             });
         }
     } catch (error) {
